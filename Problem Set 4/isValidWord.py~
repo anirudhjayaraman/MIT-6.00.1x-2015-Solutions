@@ -1,0 +1,24 @@
+def isValidWord(word, hand, wordList):
+    """
+    Returns True if word is in the wordList and is entirely
+    composed of letters in the hand. Otherwise, returns False.
+
+    Does not mutate hand or wordList.
+   
+    word: string
+    hand: dictionary (string -> int)
+    wordList: list of lowercase strings
+    """
+    if word not in wordList:
+        return False
+    else:
+        frequencies = []
+        for letter in hand.keys():
+            frequencies.append(hand[letter])
+        newHand = dict(zip(hand.keys(), frequencies))
+        
+        for letter in word:
+            if newHand.get(letter,100) - 1 == 99 or newHand.get(letter,100) - 1 < 0:
+                return False
+        return True    
+            
